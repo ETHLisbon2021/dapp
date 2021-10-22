@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useRef, useCallback } from 'react'
 import { useWeb3React } from '@web3-react/core'
 import type { Web3Provider } from '@ethersproject/providers'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
@@ -31,6 +31,10 @@ const useConnect = (): Output => {
 
   const { account, library, connector, active, activate, deactivate, error, setError: _setError } = web3React
 
+  const accountRef = useRef<string>()
+
+  accountRef.current = account
+
   const setError = useCallback<Output['setError']>((message) => {
     _setError(new Error(message))
   }, [])
@@ -38,7 +42,12 @@ const useConnect = (): Output => {
   const connect = useCallback<Output['connect']>((connectorName, callback) => {
     activate(connectors[connectorName])
       .then(() => {
-        localStorage.setItem(constants.connectorName, connectorName as any)
+        setTimeout(() => {
+          if (accountRef.current) {
+            localStorage.setItem(constants.connectorName, connectorName as any)
+          }
+        }, 0)
+
         connectors[connectorName].on('Web3ReactDeactivate', removeConnectorName)
 
         if (typeof callback === 'function') {

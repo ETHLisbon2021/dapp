@@ -1,12 +1,14 @@
 import React from 'react'
-import { useConnect, ConnectorNames } from 'web3'
+import { useConnect } from 'web3'
+
+import ConnectModal, { openConnectModal } from 'compositions/modals/ConnectModal/ConnectModal'
 
 
 const HomePage = () => {
-  const { account, connect, disconnect } = useConnect()
+  const { account, disconnect } = useConnect()
 
   const handleConnect = () => {
-    connect(ConnectorNames.Injected) // MetaMask
+    openConnectModal()
   }
 
   return (
@@ -21,6 +23,7 @@ const HomePage = () => {
           <button onClick={handleConnect}>Connect</button>
         )
       }
+      <ConnectModal />
     </div>
   )
 }
