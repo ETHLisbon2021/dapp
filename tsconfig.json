@@ -23,6 +23,7 @@
       "classnames": [ "node_modules/classnames" ],
       "web3": [ "local_modules/web3" ],
       "modal": [ "local_modules/modal" ],
+      "layouts/*": [ "src/layouts/*" ],
       "components/*": [ "src/components/*" ],
       "compositions/*": [ "src/compositions/*" ],
       "paages/*": [ "src/paages/*" ],

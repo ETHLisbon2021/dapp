@@ -2,6 +2,8 @@ import React, { useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import cx from 'classnames'
 
+import { Overlay } from 'components/layout'
+
 import s from './PlainModal.module.scss'
 
 
@@ -32,7 +34,7 @@ const PlainModal: React.FunctionComponent<PlainModalProps> = (props) => {
   const modalClassName = cx(s.plainModal, className)
 
   return createPortal(
-    <div className={s.overlay} onClick={handleOverlayClick}>
+    <Overlay onClick={handleOverlayClick}>
       <div className={s.container}>
         <div
           className={modalClassName}
@@ -55,7 +57,7 @@ const PlainModal: React.FunctionComponent<PlainModalProps> = (props) => {
           </div>
         </div>
       </div>
-    </div>,
+    </Overlay>,
     document.getElementById('modals')
   )
 }

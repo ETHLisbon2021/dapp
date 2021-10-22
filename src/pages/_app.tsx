@@ -5,6 +5,8 @@ import { Web3ReactProvider } from '@web3-react/core'
 // import { ContractsProvider } from 'contracts'
 import { Connector } from 'web3'
 
+import MainLayout from 'layouts/MainLayout/MainLayout'
+
 import '../scss/globals.scss'
 
 
@@ -39,7 +41,9 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <Web3ReactProvider getLibrary={getWeb3ReactLibrary}>
         <Connector>
-          <Component {...pageProps} />
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
           <div id="modals" />
         </Connector>
       </Web3ReactProvider>
