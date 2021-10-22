@@ -1,0 +1,23 @@
+.image {
+  display: block;
+  width: 100rem;
+  height: 100rem;
+}
+
+.fileButton {
+  position: relative;
+  display: inline-block;
+  margin-top: 16rem;
+  cursor: pointer;
+
+  button {
+    pointer-events: none;
+  }
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+  }
+}

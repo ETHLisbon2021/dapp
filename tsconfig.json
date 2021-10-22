@@ -27,6 +27,8 @@
       "components/*": [ "src/components/*" ],
       "compositions/*": [ "src/compositions/*" ],
       "paages/*": [ "src/paages/*" ],
+      "hooks": [ "src/hooks" ],
+      "helpers/*": [ "src/helpers/*" ],
     }
   },
   "include": [
