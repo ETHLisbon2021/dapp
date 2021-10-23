@@ -35,11 +35,8 @@ const Headline = () => {
         {
           stats.map(({ icon, title, value }) => (
             <div key={title} className={s.stat}>
-              <img className={s.icon} src={icon} alt="" />
-              <div>
-                <div className={s.title}>{title}</div>
-                <div className={s.value}>{value}</div>
-              </div>
+              <div className={s.title}>{title}</div>
+              <div className={s.value}>{value}</div>
             </div>
           ))
         }

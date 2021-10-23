@@ -12,6 +12,7 @@
 }
 
 .stats {
+  border: 1px solid #000;
 
   @include except-mobile {
     display: flex;
@@ -19,19 +20,12 @@
 }
 
 .stat {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #000;
-  padding: 12rem;
-}
+  padding: 12rem 24rem;
+  border-left: 1px solid #000;
 
-.icon {
-  display: block;
-  width: 40rem;
-  height: 40rem;
-  margin-right: 12rem;
-  background-color: #eee;
+  &:first-child {
+    border-left: 0;
+  }
 }
 
 .title {

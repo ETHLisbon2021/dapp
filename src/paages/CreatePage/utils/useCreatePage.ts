@@ -48,8 +48,8 @@ const useCreatePage = () => {
 
       const ipfsHashHex = utils.hexlify(utils.base58.decode(ipfsHash).slice(2))
 
-      const receipt = await stakingContract.addManager(ipfsHashHex, values.symbol.toUpperCase())
-      const trxHash = await receipt.wait()
+      // const receipt = await stakingContract.addManager(ipfsHashHex, values.symbol.toUpperCase())
+      // const trxHash = await receipt.wait()
     }
     catch (err) {
       console.error(err)
