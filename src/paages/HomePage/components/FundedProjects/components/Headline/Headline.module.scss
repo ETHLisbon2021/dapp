@@ -1,0 +1,48 @@
+@import "src/scss/index";
+
+
+.headline {
+
+  @include except-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32rem;
+  }
+}
+
+.stats {
+
+  @include except-mobile {
+    display: flex;
+  }
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #000;
+  padding: 12rem;
+}
+
+.icon {
+  display: block;
+  width: 40rem;
+  height: 40rem;
+  margin-right: 12rem;
+  background-color: #eee;
+}
+
+.title {
+  color: #ccc;
+  font-size: 14rem;
+  line-height: 20rem;
+}
+
+.value {
+  color: #000;
+  font-weight: 700;
+  font-size: 16rem;
+  line-height: 24rem;
+}

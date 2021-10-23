@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useConnect, ConnectorNames } from 'web3'
+import { useConnect } from 'web3'
 import { modalVisibility, openModal, ModalVisibilityProps } from 'modal'
 
 import { PlainModal } from 'components/feedback'
@@ -7,18 +7,18 @@ import { PlainModal } from 'components/feedback'
 import s from './ConnectModal.module.scss'
 
 
-const connectorsByName: { [connectorName in ConnectorNames]: { icon: string, title: string, connector: any } } = {
-  [ConnectorNames.Injected]: {
+const connectors = [
+  {
     icon: '/images/svg/wallets/metamask.svg',
     title: 'Metamask',
-    connector: ConnectorNames.Injected,
+    connector: 'injected',
   },
-  [ConnectorNames.WalletConnect]: {
+  {
     icon: '/images/svg/wallets/walletconnect.svg',
     title: 'WalletConnect',
-    connector: ConnectorNames.WalletConnect,
+    connector: 'walletconnect',
   },
-}
+]
 
 type ButtonProps = {
   icon: any
@@ -75,20 +75,16 @@ const ConnectModal: React.FunctionComponent<ConnectModalProps> = ({ closeModal }
         </div>
         <div className="w-full">
           {
-            Object.keys(connectorsByName).map((name) => {
-              const { icon, title, connector } = connectorsByName[name]
-
-              return (
-                <Button
-                  key={title}
-                  icon={icon}
-                  title={title}
-                  connector={connector}
-                  disabled={isConnecting}
-                  onClick={handleButtonClick}
-                />
-              )
-            })
+            connectors.map(({ icon, title, connector }) => (
+              <Button
+                key={title}
+                icon={icon}
+                title={title}
+                connector={connector}
+                disabled={isConnecting}
+                onClick={handleButtonClick}
+              />
+            ))
           }
         </div>
       </div>

@@ -10,7 +10,7 @@ const Connector: React.FunctionComponent = ({ children }) => {
   useEffect(() => {
     const connectorName = localStorage.getItem(constants.connectorName)
 
-    if (connectorName) {
+    if (connectorName !== undefined && connectorName !== null) {
       connect(connectorName as any)
     }
   }, [])

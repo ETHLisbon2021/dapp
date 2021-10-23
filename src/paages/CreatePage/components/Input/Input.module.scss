@@ -1,0 +1,46 @@
+@import "src/scss/index";
+
+
+.root {
+  position: relative;
+}
+
+.label {
+  display: inline-block;
+  vertical-align: bottom;
+  padding: 4rem 6rem;
+  color: #fff;
+  font-size: 12rem;
+  text-transform: uppercase;
+  background-color: #000;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  height: 48rem;
+  padding: 0 16rem;
+  color: #000;
+  font-size: 16rem;
+  background: none;
+  background-color: transparent;
+  border: 1px solid #000;
+  box-shadow: none;
+  outline: none;
+  transition: all 0.3s ease;
+
+  @include placeholder {
+    color: #000;
+  }
+
+  &.disabled {
+    color: $text-200;
+    background-color: $surface-primary;
+    border-color: $border-100;
+  }
+
+  &.errored {
+    background-color: $surface-primary;
+    border-color: $text-attention !important;
+  }
+}

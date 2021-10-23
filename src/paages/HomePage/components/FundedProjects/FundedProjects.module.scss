@@ -1,0 +1,61 @@
+@import "src/scss/index";
+
+
+.root {
+
+  @include except-mobile {
+    margin-top: 80rem;
+  }
+}
+
+.table {
+  width: 100%;
+  white-space: nowrap;
+  text-align: left;
+  border-collapse: collapse;
+
+  th {
+    padding: 16rem;
+    color: #ccc;
+    font-size: 16rem;
+    line-height: 20rem;
+  }
+
+  td {
+    padding: 16rem;
+    font-size: 14rem;
+    line-height: 20rem;
+    border-top: 1px solid #000;
+  }
+}
+
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  width: 40rem;
+  height: 40rem;
+  margin-right: 12rem;
+  background-color: #fff;
+}
+
+.name {
+
+  @include except-mobile {
+    font-weight: 700;
+    font-size: 22rem;
+    line-height: 28rem;
+  }
+}
+
+.token {
+
+  @include except-mobile {
+    color: #ccc;
+    font-size: 14rem;
+    line-height: 20rem;
+  }
+}

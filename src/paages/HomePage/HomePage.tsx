@@ -1,29 +1,18 @@
 import React from 'react'
-import { useConnect } from 'web3'
 
-import ConnectModal, { openConnectModal } from 'compositions/modals/ConnectModal/ConnectModal'
+import Hero from './components/Hero/Hero'
+import UpcomingProjects from './components/UpcomingProjects/UpcomingProjects'
+import FundedProjects from './components/FundedProjects/FundedProjects'
 
 
 const HomePage = () => {
-  const { account, disconnect } = useConnect()
 
-  const handleConnect = () => {
-    openConnectModal()
-  }
 
   return (
     <div>
-      {
-        Boolean(account) ? (
-          <div>
-            <div>{account}</div>
-            <button onClick={disconnect}>Disconnect</button>
-          </div>
-        ) : (
-          <button onClick={handleConnect}>Connect</button>
-        )
-      }
-      <ConnectModal />
+      <Hero />
+      <UpcomingProjects />
+      <FundedProjects />
     </div>
   )
 }

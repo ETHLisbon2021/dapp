@@ -2,11 +2,6 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 
 
-export enum ConnectorNames {
-  Injected,
-  WalletConnect
-}
-
 const injected = new InjectedConnector({
   supportedChainIds: [ 1, 3, 4, 5, 42, 56, 97 ],
 })
@@ -22,6 +17,6 @@ const walletconnect = new WalletConnectConnector({
 
 
 export default {
-  [ConnectorNames.Injected]: injected,
-  [ConnectorNames.WalletConnect]: walletconnect,
+  injected,
+  walletconnect,
 }

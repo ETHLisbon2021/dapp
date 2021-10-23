@@ -3,7 +3,7 @@ import { useWeb3React } from '@web3-react/core'
 import type { Web3Provider } from '@ethersproject/providers'
 import type { AbstractConnector } from '@web3-react/abstract-connector'
 
-import connectors, { ConnectorNames } from './connectors'
+import connectors from './connectors'
 import constants from './constants'
 
 
@@ -21,7 +21,7 @@ type Output = {
   error: string | null
   disconnect: () => void
   setError: (message: string) => void
-  connect: (connectorName: ConnectorNames, callback?: () => void) => void
+  connect: (connectorName: string, callback?: () => void) => void
 }
 
 const removeConnectorName = () => localStorage.removeItem(constants.connectorName)

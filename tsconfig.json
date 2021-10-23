@@ -28,6 +28,7 @@
       "compositions/*": [ "src/compositions/*" ],
       "paages/*": [ "src/paages/*" ],
       "hooks": [ "src/hooks" ],
+      "helpers": [ "src/helpers" ],
       "helpers/*": [ "src/helpers/*" ],
     }
   },

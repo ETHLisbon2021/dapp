@@ -1,0 +1,50 @@
+@import "src/scss/index";
+
+
+.hero {
+
+  @include except-mobile {
+    padding: 80rem 0;
+  }
+}
+
+.title {
+  position: relative;
+  width: 660rem;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  div {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+
+    &:first-child {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      z-index: 1;
+      color: #fff;
+      -webkit-text-fill-color: #fff;
+
+      span {
+        color: #000;
+        -webkit-text-fill-color: #000;
+      }
+    }
+
+    &:last-child {
+      color: #000;
+      -webkit-text-fill-color: #000;
+
+      span {
+        color: #fff;
+        -webkit-text-fill-color: #fff;
+      }
+    }
+  }
+
+  @include except-mobile {
+    font-size: 64rem;
+    line-height: 92rem;
+  }
+}

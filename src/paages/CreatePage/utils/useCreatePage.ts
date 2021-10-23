@@ -1,11 +1,17 @@
 import axios from 'axios'
+import { utils } from 'ethers'
 import { useForm } from 'formular'
 import { useReducerState } from 'hooks'
 import { required } from 'helpers/validators'
 
 
 type FormFields = {
+  image: string
   logo: string
+  name: string
+  description: string
+  raise: number
+  allocation: number
 }
 
 const useCreatePage = () => {
@@ -15,7 +21,12 @@ const useCreatePage = () => {
 
   const form = useForm<FormFields>({
     fields: {
+      image: [ required ],
       logo: [ required ],
+      name: [ required ],
+      description: [ required ],
+      raise: [ required ],
+      allocation: [ required ],
     },
   })
 
@@ -32,6 +43,13 @@ const useCreatePage = () => {
       const  { data: { large, small } } = await axios.post('/api/upload-image', {
         file: values.logo,
       })
+
+      const { data: { ipfsHash } } = await axios.post('/api/pin-json-to-ipfs', { ...values, logo: { large, small } })
+
+      const ipfsHashHex = utils.hexlify(utils.base58.decode(ipfsHash).slice(2))
+
+      const receipt = await stakingContract.addManager(ipfsHashHex, values.symbol.toUpperCase())
+      const trxHash = await receipt.wait()
     }
     catch (err) {
       console.error(err)
