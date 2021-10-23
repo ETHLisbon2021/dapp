@@ -18,7 +18,7 @@ const getWeb3ReactLibrary = (provider, connector) => {
   return lib
 }
 
-const title = ''
+const title = 'Eligible'
 const description = ''
 
 const SafeHydrate = ({ children }) => (

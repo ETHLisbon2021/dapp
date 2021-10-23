@@ -61,7 +61,7 @@ const FundedProjects = () => {
                     <img className={s.logo} src={logo} alt="" />
                     <div>
                       <div className={s.name}>{name}</div>
-                      <div className={s.token}>{token}</div>
+                      <div className={s.token}>${token}</div>
                     </div>
                   </div>
                 </td>

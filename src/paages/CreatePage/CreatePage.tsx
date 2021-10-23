@@ -129,10 +129,11 @@ const SubmitButton = ({ form, isSubmitting, onSubmit }) => {
         const allowance = await tokenContract.allowance(account, contracts.eligible.address)
 
         console.log('Allowance amount:', allowance.toString())
+        console.log('Required amount:', String(form.fields.hardCap.state.value))
 
         setState({
           isLoading: false,
-          isAllowed: allowance.toString() !== String(form.fields.hardCap.state.value),
+          isAllowed: allowance.toString() === String(form.fields.hardCap.state.value),
         })
       }
       catch (err) {

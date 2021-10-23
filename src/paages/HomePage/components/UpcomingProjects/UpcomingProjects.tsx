@@ -1,72 +1,78 @@
 import React from 'react'
 
 import { WidthContainer } from 'components/layout'
-import { Text } from 'components/dataDisplay'
+
+import useUpcomingProjects from './utils/useUpcomingProjects'
 
 import s from './UpcomingProjects.module.scss'
 
 
-const projects = [
-  {
-    image: 'https://res.cloudinary.com/polkastarter/image/upload/v1634311032/projects/dose/dose-cover.png',
-    logo: 'https://res.cloudinary.com/polkastarter/image/upload/v1634311014/projects/dose/dose-logo.png',
-    name: 'Dose',
-    token: 'DOSE',
-    poolSize: 5_000_000,
-    hardCap: 3_000,
-  },
-  {
-    image: 'https://res.cloudinary.com/polkastarter/image/upload/v1634240391/projects/LFW/LFW-cover.png',
-    logo: 'https://res.cloudinary.com/polkastarter/image/upload/v1634240390/projects/LFW/LFW-logo.jpg',
-    name: 'Legend of Fantasy War',
-    token: 'LFW',
-    poolSize: 2_000_000,
-    hardCap: 2_300,
-  },
-]
+const ProjectCard = ({ data }) => {
+  const { cover, logo, name, tokenAddress, tokenSymbol, poolSize, hardCap, tokenPrice } = data
+
+  const handleParticipate = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  return (
+    <div className={s.projectCard}>
+      <a
+        className={s.project}
+        href={`/projects/${tokenAddress}`}
+      >
+        <img className={s.cover} src={cover} alt="" />
+        <div className={s.content}>
+          <img className={s.logo} src={logo} alt="" />
+          <div className={s.name}>{name}</div>
+          <div className={s.token}>${tokenSymbol}</div>
+          <div className={s.info}>
+            <div className={s.row}>
+              <span>Pool Size</span>
+              <b>{poolSize} {tokenSymbol}</b>
+            </div>
+            <div className={s.row}>
+              <span>Hard Cap</span>
+              <b>{hardCap} ETH</b>
+            </div>
+            <div className={s.row}>
+              <span>Token Price</span>
+              <b>{tokenPrice} ETH</b>
+            </div>
+          </div>
+        </div>
+        <div className={s.participateButton} onClick={handleParticipate}>Participate</div>
+      </a>
+    </div>
+  )
+}
 
 const UpcomingProjects = () => {
+  const { isFetching, projects } = useUpcomingProjects()
 
   return (
     <WidthContainer className={s.root}>
-      <Text style="h2">Upcoming projects</Text>
-      <div className={s.projects}>
-        {
-          projects.map(({ image, logo, name, token, poolSize, hardCap }, index) => {
-            const tokenPrice = parseFloat((hardCap / poolSize).toFixed(2))
-            const _hardCap = parseFloat(hardCap.toFixed(2))
+      <div className={s.rootTitle}>Upcoming projects</div>
+      {
+        isFetching ? (
+          <div>Fetching...</div>
+        ) : (
+          projects?.length ? (
+            <div className={s.projects}>
+              {
+                projects.map((data, index) => {
 
-            return (
-              <a
-                key={`${name}-${index}`}
-                className={s.project}
-                href={`/projects/${name.toLowerCase().replace(/\s/g, '-')}`}
-              >
-                <img className={s.image} src={image} alt="" />
-                <div className={s.content}>
-                  <img className={s.logo} src={logo} alt="" />
-                  <div className={s.name}>{name}</div>
-                  <div className={s.token}>${token}</div>
-                  <div className={s.info}>
-                    <div className={s.row}>
-                      <span>Pool Size</span>
-                      <b>{poolSize} {token}</b>
-                    </div>
-                    <div className={s.row}>
-                      <span>Hard Cap</span>
-                      <b>{_hardCap} ETH</b>
-                    </div>
-                    <div className={s.row}>
-                      <span>Token Price</span>
-                      <b>{tokenPrice} ETH</b>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            )
-          })
-        }
-      </div>
+                  return (
+                    <ProjectCard key={`${data.name}-${index}`} data={data} />
+                  )
+                })
+              }
+            </div>
+          ) : (
+            <div>Nothing to show...</div>
+          )
+        )
+      }
     </WidthContainer>
   )
 }

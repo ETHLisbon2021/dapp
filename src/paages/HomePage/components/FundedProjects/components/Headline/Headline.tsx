@@ -1,23 +1,20 @@
 import React from 'react'
 
-import { Text } from 'components/dataDisplay'
+import { Card } from 'components/layout'
 
 import s from './Headline.module.scss'
 
 
 const stats = [
   {
-    icon: '',
     title: 'Funded Projects',
     value: '80',
   },
   {
-    icon: '',
     title: 'Unique Participants',
     value: '20,135',
   },
   {
-    icon: '',
     title: 'Raised Capital',
     value: '$16,402,934',
   },
@@ -28,19 +25,19 @@ const Headline = () => {
   return (
     <div className={s.headline}>
       <div>
-        <Text style="h2">Funded projects</Text>
-        <Text style="p1" color="300">We bring new technologies to our community</Text>
+        <div className={s.rootTitle}>Funded projects</div>
+        <div className={s.text}>We bring new technologies to our community</div>
       </div>
-      <div className={s.stats}>
+      <Card className={s.stats}>
         {
-          stats.map(({ icon, title, value }) => (
+          stats.map(({ title, value }) => (
             <div key={title} className={s.stat}>
-              <div className={s.title}>{title}</div>
-              <div className={s.value}>{value}</div>
+              <span>{title}</span>
+              <b>{value}</b>
             </div>
           ))
         }
-      </div>
+      </Card>
     </div>
   )
 }

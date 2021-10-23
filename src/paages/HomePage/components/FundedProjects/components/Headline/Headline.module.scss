@@ -11,17 +11,50 @@
   }
 }
 
-.stats {
-  border: 1px solid #000;
+.rootTitle {
+  font-weight: 700;
+  color: #222;
+  text-transform: uppercase;
 
   @include except-mobile {
-    display: flex;
+    font-size: 28rem;
+    line-height: 36rem;
   }
 }
 
+.text {
+  color: #666;
+
+  @include except-mobile {
+    margin-top: 8rem;
+    font-size: 16rem;
+    line-height: 24rem;
+  }
+}
+
+.stats {
+  display: inline-flex;
+  color: #000;
+}
+
 .stat {
-  padding: 12rem 24rem;
+  padding: 16rem 28rem;
   border-left: 1px solid #000;
+
+  span {
+    display: block;
+    margin-bottom: 6rem;
+    color: #666;
+    font-size: 12rem;
+    line-height: 16rem;
+    text-transform: uppercase;
+  }
+
+  b {
+    font-weight: 700;
+    font-size: 18rem;
+    line-height: 28rem;
+  }
 
   &:first-child {
     border-left: 0;

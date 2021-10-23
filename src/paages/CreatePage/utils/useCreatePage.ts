@@ -72,13 +72,19 @@ const useCreatePage = () => {
 
       const eligibleContract = getContract('eligible', true)
 
-      const { tokenAddress, poolSize, hardCap, allocation, endingAt } = values
-      const { data: { ipfsHash } } = await (axios.post('/api/pin-json-to-ipfs', values) as Promise<{ data: { ipfsHash: string } }>)
+      const { tokenAddress, tokenSymbol, poolSize, hardCap, allocation, endingAt, name, about, cover, logo } = values
+
+      const ipfsValues = {
+        name,
+        about,
+        cover,
+        logo,
+        tokenSymbol,
+      }
+
+      const { data: { ipfsHash } } = await (axios.post('/api/pin-json-to-ipfs', ipfsValues) as Promise<{ data: { ipfsHash: string } }>)
 
       const ipfsHashHex = utils.hexlify(utils.base58.decode(ipfsHash).slice(2))
-
-      // const ipfsHashArr = utils.arrayify(ipfsHashHex)
-      // const ipfsHash2 = utils.base58.encode([ 18, 32, ...ipfsHashArr ])
 
       const hardCapBN = parseUnits(String(hardCap), 18)
       const poolSizeBN = parseUnits(String(poolSize), 18)

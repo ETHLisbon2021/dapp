@@ -1,0 +1,41 @@
+@import "src/scss/index";
+
+
+.card {
+
+  @include except-mobile {
+    width: 424rem;
+    padding: 52rem 32rem 40rem;
+    box-shadow: #000 6px 6px;
+  }
+}
+
+.title {
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include except-mobile {
+    margin-bottom: 40rem;
+    font-size: 24rem;
+    line-height: 28rem;
+  }
+}
+
+.input {
+  width: 100%;
+
+  @include except-mobile {
+    height: 44rem;
+    font-size: 12rem;
+  }
+}
+
+.disclaimer {
+
+  @include except-mobile {
+    margin-top: 16rem;
+    font-size: 12rem;
+    line-height: 18rem;
+  }
+}

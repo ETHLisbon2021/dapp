@@ -24,52 +24,93 @@
 }
 
 .logo {
-  bottom: -24rem;
+  bottom: -42rem;
   left: 40rem;
   z-index: 2;
-  width: 100rem;
-  height: 100rem;
+  width: 84rem;
+  height: 84rem;
   background-color: #fff;
   border: 1px solid #000;
 }
 
-.stats {
-  display: flex;
-  color: #fff;
-  background-color: #000;
-
-  @include except-mobile {
-    padding: 20rem 20rem 20rem 180rem;
-    font-size: 16rem;
-  }
-}
-
-.stat {
-  margin-left: 48rem;
-
-  span {
-    margin-right: 6rem;
-  }
-
-  &:first-child {
-    margin-left: 0;
-  }
+.content {
+  max-width: 740rem;
+  padding: 80rem 40rem 40rem;
 }
 
 .name {
 
   @include except-mobile {
-    margin-top: 32rem;
     font-weight: 700;
     font-size: 28rem;
     line-height: 56rem;
   }
 }
 
-.about {
+.stats {
+  display: inline-flex;
+  color: #000;
 
   @include except-mobile {
+    margin-top: 16rem;
+  }
+}
+
+.stat {
+  padding: 16rem 28rem;
+  border-left: 1px solid #000;
+
+  span {
+    display: block;
+    margin-bottom: 6rem;
+    color: #666;
+    font-size: 12rem;
+    line-height: 16rem;
+    text-transform: uppercase;
+  }
+
+  b {
+    font-weight: 700;
+    font-size: 18rem;
+    line-height: 28rem;
+  }
+
+  &:first-child {
+    border-left: 0;
+  }
+}
+
+.about {
+  color: #222;
+
+  @include except-mobile {
+    margin-top: 32rem;
     font-size: 16rem;
-    line-height: 20rem;
+    line-height: 28rem;
+  }
+}
+
+.participateButton {
+  color: #fff;
+  font-weight: 700;
+  background-color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  @include basic-transition();
+
+  @include mobile {
+
+  }
+
+  @include except-mobile {
+    height: 62rem;
+    margin-top: 40rem;
+    font-size: 12rem;
+    line-height: 62rem;
+  }
+
+  &:hover {
+    background-color: #000;
   }
 }

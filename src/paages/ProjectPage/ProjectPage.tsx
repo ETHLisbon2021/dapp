@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { WidthContainer } from 'components/layout'
+import { WidthContainer, Card } from 'components/layout'
+
+import useProjectPage from './utils/useProjectPage'
 
 import s from './ProjectPage.module.scss'
 
@@ -16,8 +18,10 @@ const data = {
   allocation: 2.2,
 }
 
-const ProjectPage = () => {
+const ProjectPage = ({ tokenAddress }) => {
   const { image, logo, name, about, token, poolSize, hardCap, allocation } = data
+
+  const { isFetching, project } = useProjectPage(tokenAddress)
 
   let tokenPrice = parseFloat((hardCap / poolSize).toFixed(5))
   const _hardCap = parseFloat(hardCap.toFixed(2))
@@ -31,28 +35,38 @@ const ProjectPage = () => {
       <div className={s.imageContainer} style={{ backgroundImage: `url(${image})` }}>
         <img className={s.logo} src={logo} alt="" />
       </div>
-      <div className={s.stats}>
-        <div className={s.stat}>
-          <span>Pool Size</span>
-          <b>{poolSize} {token}</b>
-        </div>
-        <div className={s.stat}>
-          <span>Hard Cap</span>
-          <b>{_hardCap} ETH</b>
-        </div>
-        <div className={s.stat}>
-          <span>Token Price</span>
-          <b>{tokenPrice} ETH</b>
-        </div>
-        <div className={s.stat}>
-          <span>Allocation</span>
-          <b>{allocation} ETH</b>
-        </div>
+      <div className={s.content}>
+        <div className={s.name}>{name}</div>
+        <Card className={s.stats}>
+          <div className={s.stat}>
+            <span>Pool Size</span>
+            <b>{poolSize} {token}</b>
+          </div>
+          <div className={s.stat}>
+            <span>Hard Cap</span>
+            <b>{_hardCap} ETH</b>
+          </div>
+          <div className={s.stat}>
+            <span>Token Price</span>
+            <b>{tokenPrice} ETH</b>
+          </div>
+          <div className={s.stat}>
+            <span>Allocation</span>
+            <b>{allocation} ETH</b>
+          </div>
+        </Card>
+        <div className={s.about}>{about}</div>
+        <div className={s.participateButton}>Participate</div>
       </div>
-      <div className={s.name}>{name}</div>
-      <div className={s.about}>{about}</div>
     </WidthContainer>
   )
+}
+
+ProjectPage.getInitialProps = async ({ query }) => {
+
+  return {
+    tokenAddress: query.tokenAddress,
+  }
 }
 
 

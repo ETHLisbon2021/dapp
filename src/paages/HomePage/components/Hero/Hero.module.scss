@@ -4,8 +4,14 @@
 .hero {
 
   @include except-mobile {
-    padding: 80rem 0;
+    padding: 80rem 0 40rem;
   }
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .title {
