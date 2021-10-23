@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "npm run typechain",
     "typechain": "typechain --target ethers-v5 --out-dir ./src/contracts/types './src/contracts/abis/*.json'"
   },
   "dependencies": {
