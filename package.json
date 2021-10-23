@@ -6,7 +6,8 @@
     "dev": "next dev -p 5011",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typechain": "typechain --target ethers-v5 --out-dir ./src/contracts/types './src/contracts/abis/*.json'"
   },
   "dependencies": {
     "@ethersproject/providers": "^5.5.0",
@@ -14,21 +15,25 @@
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "@web3-react/walletconnect-connector": "6.2.4",
+    "axios": "^0.23.0",
     "dayjs": "^1.10.7",
     "ethers": "^5.5.1",
     "formular": "^3.0.1",
     "graphql-request": "^3.6.1",
     "next": "11.1.2",
     "react": "17.0.2",
+    "react-date-picker": "^8.3.4",
     "react-dom": "17.0.2",
-    "sharp": "^0.29.2",
-    "swr": "^1.0.1"
+    "swr": "^1.0.1",
+    "web3.storage": "^3.3.2"
   },
   "devDependencies": {
+    "@typechain/ethers-v5": "^7.2.0",
     "@types/react": "17.0.31",
     "eslint": "8.0.1",
     "eslint-config-next": "11.1.2",
     "sass": "^1.43.3",
+    "typechain": "^5.2.0",
     "typescript": "4.4.4"
   }
 }

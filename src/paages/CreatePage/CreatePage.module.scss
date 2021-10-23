@@ -13,7 +13,7 @@
   }
 }
 
-.image,
+.cover,
 .logo {
   position: absolute;
   background-size: cover;
@@ -21,7 +21,7 @@
   cursor: pointer;
 }
 
-.image {
+.cover {
   top: 0;
   left: 0;
   width: 100%;
@@ -46,7 +46,8 @@
   }
 }
 
-.imgPlaceholder {
+.imgPlaceholder,
+.spinner {
   position: absolute;
   top: 0;
   right: 0;
@@ -56,24 +57,88 @@
   pointer-events: none;
 }
 
-.input {
-  margin-top: 24rem;
+.spinner {
+  width: 40rem;
+  height: 40rem;
 }
 
+.label {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 120rem;
+  margin-top: 24rem;
+  padding: 4rem 6rem;
+  color: #fff;
+  font-size: 12rem;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #000;
+}
+
+.row {
+
+  @include except-mobile {
+    display: grid;
+    grid-gap: 20rem;
+    grid-template-columns: auto 200rem;
+  }
+}
+
+.input {
+
+}
+
+.datePicker {
+
+}
+
+.buttons {
+
+  @include except-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: 40rem;
+  }
+}
+
+.prefillButton,
 .submitButton {
-  background: #000;
-  border: 0;
+  border: 1px solid transparent;
   cursor: pointer;
 
   @include except-mobile {
     width: 240rem;
     height: 56rem;
-    margin: 40rem auto 0;
     padding: 0 32rem;
-    color: #fff;
     font-size: 18rem;
     line-height: 56rem;
     text-align: center;
     text-transform: uppercase;
   }
+}
+
+.prefillButton {
+  color: #000;
+  border-color: #000;
+}
+
+.submitButton {
+  color: #fff;
+  background-color: #000;
+
+  @include except-mobile {
+    margin-left: 20rem;
+  }
+  
+  &.disabled {
+    background-color: #aaa;
+  }
+}
+
+.buttonSpinner {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16rem;
+  height: 16rem;
+  filter: invert(1);
 }

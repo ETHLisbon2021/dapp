@@ -2,12 +2,13 @@ import React from 'react'
 import Head from 'next/head'
 import { Web3Provider } from '@ethersproject/providers'
 import { Web3ReactProvider } from '@web3-react/core'
-// import { ContractsProvider } from 'contracts'
+import { ContractsProvider } from 'contracts'
 import { Connector } from 'web3'
 
 import MainLayout from 'layouts/MainLayout/MainLayout'
 
 import '../scss/globals.scss'
+import '../scss/date-picker.scss'
 
 
 const getWeb3ReactLibrary = (provider, connector) => {
@@ -41,10 +42,12 @@ const MyApp = ({ Component, pageProps }) => {
       </Head>
       <Web3ReactProvider getLibrary={getWeb3ReactLibrary}>
         <Connector>
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
-          <div id="modals" />
+          <ContractsProvider>
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+            <div id="modals" />
+          </ContractsProvider>
         </Connector>
       </Web3ReactProvider>
     </SafeHydrate>

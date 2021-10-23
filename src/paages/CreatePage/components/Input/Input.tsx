@@ -9,14 +9,13 @@ export type InputProps = {
   className?: string
   field: Field<string | number>
   pattern?: string
-  label?: string
   placeholder?: string
   disabled?: boolean
   onChange?: (value: string) => void
 }
 
 const Input: React.FC<InputProps> = (props) => {
-  const { className, field, pattern, label, placeholder, disabled, onChange } = props
+  const { className, field, pattern, placeholder, disabled, onChange } = props
 
   const inputRef = useRef<HTMLInputElement>(null)
   const { value, error } = useFieldState<string | number>(field)
@@ -52,7 +51,6 @@ const Input: React.FC<InputProps> = (props) => {
 
   return (
     <div className={rootClassName}>
-      <label className={s.label}>{label}</label>
       <input
         className={inputClassName}
         value={value}

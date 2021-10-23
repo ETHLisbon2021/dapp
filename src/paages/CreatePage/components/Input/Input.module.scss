@@ -5,16 +5,6 @@
   position: relative;
 }
 
-.label {
-  display: inline-block;
-  vertical-align: bottom;
-  padding: 4rem 6rem;
-  color: #fff;
-  font-size: 12rem;
-  text-transform: uppercase;
-  background-color: #000;
-}
-
 .input {
   display: block;
   width: 100%;
@@ -34,9 +24,9 @@
   }
 
   &.disabled {
-    color: $text-200;
-    background-color: $surface-primary;
-    border-color: $border-100;
+    color: #aaa;
+    background-color: #eee;
+    border-color: #aaa;
   }
 
   &.errored {
