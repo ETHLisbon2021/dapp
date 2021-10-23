@@ -42,38 +42,44 @@ const FundedProjects = () => {
   return (
     <WidthContainer className={s.root}>
       <Headline />
-      <table className={s.table}>
-        <thead>
-          <tr>
-            {
-              titles.map((title) => (
-                <th key={title}>{title}</th>
-              ))
-            }
-          </tr>
-        </thead>
-        <tbody>
-          {
-            projects.map(({ logo, name, token, participants, raised, price, endedAt }, index) => (
-              <tr key={`${name}-${index}`}>
-                <td>
-                  <div className={s.main}>
-                    <img className={s.logo} src={logo} alt="" />
-                    <div>
-                      <div className={s.name}>{name}</div>
-                      <div className={s.token}>${token}</div>
-                    </div>
-                  </div>
-                </td>
-                <td>{participants}</td>
-                <td>{raised} ETH</td>
-                <td>{price} ETH</td>
-                <td>{dayjs(endedAt).format('MMM DD YYYY')}</td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <div className={s.tableContainer1}>
+        <div className={s.tableContainer2}>
+          <div className={s.tableContainer3}>
+            <table className={s.table}>
+              <thead>
+                <tr>
+                  {
+                    titles.map((title) => (
+                      <th key={title}>{title}</th>
+                    ))
+                  }
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  projects.map(({ logo, name, token, participants, raised, price, endedAt }, index) => (
+                    <tr key={`${name}-${index}`}>
+                      <td>
+                        <div className={s.main}>
+                          <img className={s.logo} src={logo} alt="" />
+                          <div>
+                            <div className={s.name}>{name}</div>
+                            <div className={s.token}>${token}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{participants}</td>
+                      <td>{raised} ETH</td>
+                      <td>{price} ETH</td>
+                      <td>{dayjs(endedAt).format('MMM DD YYYY')}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </WidthContainer>
   )
 }

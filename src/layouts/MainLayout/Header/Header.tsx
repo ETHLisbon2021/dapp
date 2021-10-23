@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { useConnect } from 'web3'
 import { shortenAddress } from 'helpers'
 import cx from 'classnames'
@@ -26,7 +27,7 @@ const AccountButton = () => {
   }
 
   return (
-    <div className={s.navItem}>
+    <div className={cx(s.navItem, s.accountButton)}>
       <span>{shortenAddress(account)}</span>
       <b onClick={disconnect}>Exit</b>
     </div>
@@ -38,10 +39,10 @@ const nav = [
     title: 'Projects',
     link: '/projects',
   },
-  {
-    title: 'Check Rating',
-    link: '/rating',
-  },
+  // {
+  //   title: 'Check Rating',
+  //   link: '/rating',
+  // },
   {
     title: 'Create Project',
     link: '/projects/create',
@@ -53,7 +54,11 @@ const Header = () => {
   return (
     <header className={s.header}>
       <WidthContainer className={s.content}>
-        <div className={s.logo}>Eligible</div>
+        <Link href="/projects">
+          <a className={s.logo}>
+            <span>Eligible</span>
+          </a>
+        </Link>
         <div className={s.nav}>
           {
             nav.map(({ title, link }) => (

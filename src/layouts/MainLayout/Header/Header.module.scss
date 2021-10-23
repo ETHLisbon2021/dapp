@@ -2,38 +2,78 @@
 
 
 .header {
-  border-top: 1px solid #000;
   border-bottom: 1px solid #000;
+  background-color: #fff;
+
+  @include except-mobile {
+    border-top: 1px solid #000;
+  }
 }
 
 .content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  @include mobile {
+    padding: 0 !important;
+  }
+
+  @include except-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .logo {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  @include mobile {
+    display: block;
+    width: 100%;
+    padding: 16rem;
+    border-bottom: 1px solid #222;
+    font-size: 20rem;
+    text-align: center;
+  }
 
   @include except-mobile {
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    margin-left: -40rem;
+    padding: 0 40rem;
     font-size: 20rem;
-    text-transform: uppercase;
   }
 }
 
 .nav {
-  display: flex;
+
+  @include mobile {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @include except-mobile {
+    display: flex;
+  }
 }
 
 .navItem {
   position: relative;
   display: block;
   text-transform: uppercase;
-  border-right: 1px solid #000;
+
+  @include mobile {
+    padding: 12rem;
+    font-size: 12rem;
+    border-left: 1px solid #000;
+  }
 
   @include except-mobile {
     padding: 24rem 40rem;
     font-size: 16rem;
+    border-right: 1px solid #000;
   }
 
   &:any-link {
@@ -53,7 +93,14 @@
   }
 
   &:first-child {
-    border-left: 1px solid #000;
+
+    @include mobile {
+      border-left: 0;
+    }
+
+    @include except-mobile {
+      border-left: 1px solid #000;
+    }
   }
 
   &:hover,
@@ -71,6 +118,9 @@
 
 .connectButton {
   cursor: pointer;
+}
+
+.accountButton {
 
   b {
     margin-left: 12rem;

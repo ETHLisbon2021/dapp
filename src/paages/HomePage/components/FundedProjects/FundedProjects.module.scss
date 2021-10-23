@@ -3,8 +3,36 @@
 
 .root {
 
+  @include mobile {
+    margin-top: 56rem;
+  }
+
   @include except-mobile {
     margin-top: 80rem;
+  }
+}
+
+.tableContainer1 {
+
+  @include mobile {
+    margin: 0 -16rem;
+    overflow: hidden;
+  }
+}
+
+.tableContainer2 {
+
+  @include mobile {
+    margin-bottom: -16rem;
+    padding-bottom: 16rem;
+    overflow-x: auto;
+  }
+}
+
+.tableContainer3 {
+
+  @include mobile {
+    padding: 0 16rem;
   }
 }
 

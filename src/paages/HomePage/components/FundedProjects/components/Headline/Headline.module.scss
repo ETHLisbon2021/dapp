@@ -3,6 +3,10 @@
 
 .headline {
 
+  @include mobile {
+    margin-bottom: 24rem;
+  }
+
   @include except-mobile {
     display: flex;
     align-items: center;
@@ -12,9 +16,14 @@
 }
 
 .rootTitle {
-  font-weight: 700;
   color: #222;
+  font-weight: 700;
   text-transform: uppercase;
+
+  @include mobile {
+    font-size: 20rem;
+    line-height: 28rem;
+  }
 
   @include except-mobile {
     font-size: 28rem;
@@ -33,21 +42,43 @@
 }
 
 .stats {
-  display: inline-flex;
   color: #000;
+
+  @include mobile {
+    margin-top: 20rem;
+  }
+
+  @include except-mobile {
+    display: inline-flex;
+  }
 }
 
 .stat {
-  padding: 16rem 28rem;
-  border-left: 1px solid #000;
+
+  @include mobile {
+    padding: 16rem 16rem 12rem;
+    border-top: 1px solid #000;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  @include except-mobile {
+    padding: 16rem 28rem;
+    border-left: 1px solid #000;
+  }
 
   span {
     display: block;
-    margin-bottom: 6rem;
     color: #666;
     font-size: 12rem;
     line-height: 16rem;
     text-transform: uppercase;
+
+    @include except-mobile {
+      margin-bottom: 6rem;
+    }
   }
 
   b {

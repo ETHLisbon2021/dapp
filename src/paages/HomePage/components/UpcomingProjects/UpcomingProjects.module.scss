@@ -3,6 +3,10 @@
 
 .root {
 
+  @include mobile {
+    margin-top: 56rem;
+  }
+
   @include except-mobile {
     margin-top: 80rem;
   }
@@ -13,6 +17,11 @@
   font-weight: 700;
   text-transform: uppercase;
 
+  @include mobile {
+    font-size: 20rem;
+    line-height: 28rem;
+  }
+
   @include except-mobile {
     font-size: 28rem;
     line-height: 36rem;
@@ -20,6 +29,10 @@
 }
 
 .projects {
+
+  @include mobile {
+    margin-top: 20rem;
+  }
 
   @include except-mobile {
     display: grid;
@@ -31,6 +44,14 @@
 
 .projectCard {
   background-color: #000;
+
+  @include mobile {
+    margin-top: 16rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .project {
@@ -41,8 +62,15 @@
   background-color: #fff;
   @include basic-transition();
 
-  &:hover {
-    transform: translate3d(-4px, -4px, 0);
+  @include mobile {
+    box-shadow: #222 4px 4px;
+  }
+
+  @include except-mobile {
+
+    &:hover {
+      transform: translate3d(-4px, -4px, 0);
+    }
   }
 }
 
@@ -54,46 +82,59 @@
 
 .content {
   position: relative;
-  padding: 40rem 32rem 32rem;
+
+  @include mobile {
+    padding: 24rem 16rem;
+  }
+
+  @include except-mobile {
+    padding: 40rem 32rem 32rem;
+  }
 }
 
 .logo {
   position: absolute;
-  top: -30rem;
-  left: 20rem;
-  width: 48rem;
-  height: 48rem;
   border: 1px solid #000;
   background-color: #fff;
+
+  @include mobile {
+    top: -20rem;
+    left: 16rem;
+    width: 40rem;
+    height: 40rem;
+  }
+
+  @include except-mobile {
+    top: -24rem;
+    left: 20rem;
+    width: 48rem;
+    height: 48rem;
+  }
 }
 
 .name {
+  font-weight: 700;
+  font-size: 16rem;
+  line-height: 28rem;
   text-transform: uppercase;
-
-  @include except-mobile {
-    font-weight: 700;
-    font-size: 16rem;
-    line-height: 28rem;
-  }
 }
 
 .token {
+  margin-top: 8rem;
+  color: #666;
+  font-size: 12rem;
+  line-height: 16rem;
   text-transform: uppercase;
-
-  @include except-mobile {
-    margin-top: 8rem;
-    color: #666;
-    font-size: 12rem;
-    line-height: 16rem;
-  }
 }
 
 .info {
 
+  @include mobile {
+    margin-top: 16rem;
+  }
+
   @include except-mobile {
     margin-top: 24rem;
-    font-size: 16rem;
-    line-height: 24rem;
   }
 }
 
@@ -102,11 +143,15 @@
   align-items: center;
   justify-content: space-between;
   text-transform: uppercase;
+  font-size: 14rem;
+  line-height: 18rem;
+
+  @include mobile {
+    margin-top: 6rem;
+  }
 
   @include except-mobile {
     margin-top: 10rem;
-    font-size: 14px;
-    line-height: 18rem;
   }
 
   span {
@@ -124,6 +169,7 @@
   z-index: 3;
   color: #000;
   font-weight: 700;
+  font-size: 12rem;
   text-align: center;
   text-transform: uppercase;
   border-top: 1px solid #000;
@@ -131,12 +177,12 @@
   @include basic-transition();
 
   @include mobile {
-
+    height: 48rem;
+    line-height: 48rem;
   }
 
   @include except-mobile {
     height: 62rem;
-    font-size: 12rem;
     line-height: 62rem;
   }
 

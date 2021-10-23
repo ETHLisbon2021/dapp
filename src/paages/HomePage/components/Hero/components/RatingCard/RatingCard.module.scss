@@ -1,12 +1,65 @@
 @import "src/scss/index";
 
 
-.card {
+.root {
+  position: relative;
+
+  @include mobile {
+    margin-top: 40rem;
+  }
+}
+
+.star1,
+.star2 {
+  position: absolute;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.star1 {
 
   @include except-mobile {
-    width: 424rem;
+    right: -103rem;
+    bottom: -140rem;
+    width: 227rem;
+    height: 227rem;
+  }
+}
+
+.star2 {
+
+  @include except-mobile {
+    top: -102rem;
+    left: -83rem;
+    width: 197rem;
+    height: 355rem;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 10;
+
+  @include mobile {
+
+  }
+
+  @include except-mobile {
+    width: 360rem;
+    box-shadow: #222 8px 8px;
+  }
+}
+
+.content {
+
+  @include mobile {
+    padding: 24rem 16rem;
+  }
+
+  @include except-mobile {
     padding: 52rem 32rem 40rem;
-    box-shadow: #000 6px 6px;
   }
 }
 
@@ -14,6 +67,12 @@
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
+
+  @include mobile {
+    margin-bottom: 24rem;
+    font-size: 20rem;
+    line-height: 28rem;
+  }
 
   @include except-mobile {
     margin-bottom: 40rem;
@@ -24,18 +83,55 @@
 
 .input {
   width: 100%;
+  border: 1px solid #222;
+
+  @include mobile {
+    height: 44rem;
+    padding: 0 16rem;
+    font-size: 12rem;
+  }
 
   @include except-mobile {
-    height: 44rem;
-    font-size: 12rem;
+    height: 56rem;
+    padding: 0 20rem;
+    font-size: 14rem;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #000;
   }
 }
 
 .disclaimer {
+  margin-top: 16rem;
+  font-size: 12rem;
+  line-height: 18rem;
+}
+
+.button {
+  position: relative;
+  z-index: 3;
+  color: #000;
+  font-weight: 700;
+  font-size: 12rem;
+  text-align: center;
+  text-transform: uppercase;
+  border-top: 1px solid #000;
+  cursor: pointer;
+  @include basic-transition();
+
+  @include mobile {
+    height: 48rem;
+    line-height: 48rem;
+  }
 
   @include except-mobile {
-    margin-top: 16rem;
-    font-size: 12rem;
-    line-height: 18rem;
+    height: 62rem;
+    line-height: 62rem;
+  }
+
+  &:hover {
+    background-color: #f5f5f5;
   }
 }
