@@ -6,7 +6,7 @@ import s from './Stats.module.scss'
 
 
 const Stats = ({ data }) => {
-  const { poolSize, hardCap, allocation, tokenPrice, tokenSymbol } = data
+  const { poolSize, hardCap, allocation, tokenPrice, tokenSymbol } = data || {}
 
   return (
     <Card className={s.stats}>
@@ -20,11 +20,11 @@ const Stats = ({ data }) => {
       </div>
       <div className={s.stat}>
         <span>Token Price</span>
-        <b>{tokenPrice} ETH</b>
+        <b>{tokenPrice || 0} ETH</b>
       </div>
       <div className={s.stat}>
         <span>Allocation</span>
-        <b>{allocation} ETH</b>
+        <b>{allocation || 0} ETH</b>
       </div>
     </Card>
   )

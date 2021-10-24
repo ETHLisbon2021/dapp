@@ -6,7 +6,7 @@
   z-index: 10;
 
   @include mobile {
-
+    margin-top: 40rem;
   }
 
   @include except-mobile {
@@ -45,32 +45,31 @@
   }
 }
 
-.inputContainer {
-  display: grid;
-  grid-template-columns: auto 80rem;
-}
-
+.addressInput,
 .input {
   width: 100%;
+  height: 44rem;
+  padding: 0 16rem;
+  font-size: 12rem;
   border: 1px solid #222;
-  border-right: 0;
-
-  @include mobile {
-    height: 44rem;
-    padding: 0 16rem;
-    font-size: 12rem;
-  }
-
-  @include except-mobile {
-    height: 44rem;
-    padding: 0 20rem;
-    font-size: 12rem;
-  }
 
   &:focus {
     outline: none;
     border-color: #000;
   }
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: auto 80rem;
+
+  @include except-mobile {
+    margin-top: 16rem;
+  }
+}
+
+.input {
+  border-right: 0;
 }
 
 .maxButton {
@@ -93,10 +92,14 @@
 }
 
 .balance {
-  margin-top: 16rem;
+  margin-top: 8rem;
   font-size: 12rem;
   line-height: 18rem;
   text-transform: uppercase;
+
+  b {
+    font-size: 13rem;
+  }
 }
 
 .button {
@@ -123,5 +126,23 @@
 
   &:hover {
     background-color: #f5f5f5;
+  }
+
+  &.disabled {
+    background-color: #eee;
+    cursor: default;
+  }
+}
+
+.spinner {
+  width: 12rem;
+}
+
+.applied {
+  font-weight: 700;
+
+  @include except-mobile {
+    font-size: 14rem;
+    line-height: 20rem;
   }
 }

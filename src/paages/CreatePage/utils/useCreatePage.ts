@@ -44,6 +44,9 @@ const useCreatePage = () => {
   })
 
   const prefill = () => {
+    if (isSubmitting) {
+      return
+    }
 
     form.setValues({
       cover: '/ipfs-files/cover.jpg',

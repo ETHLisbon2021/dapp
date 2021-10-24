@@ -10,6 +10,7 @@ import { useReducerState } from 'hooks'
 import cx from 'classnames'
 
 import { WidthContainer, Card } from 'components/layout'
+import { Title } from 'components/dataDisplay'
 import FundedProjects from 'compositions/FundedProjects/FundedProjects'
 
 import Input from './components/Input/Input'
@@ -229,6 +230,7 @@ const CreatePage = () => {
   return (
     <>
       <WidthContainer>
+        <Title className={s.title}>Create your own project</Title>
         <Card className={s.card}>
           <div className={s.formTitle}>Fill all fields to proceed to the next step</div>
           <div className={s.form}>
@@ -244,7 +246,7 @@ const CreatePage = () => {
           </div>
           <div className={s.buttons}>
             <SubmitButton form={form} isSubmitting={isSubmitting} onSubmit={submit} />
-            <div className={s.prefillButton} onClick={prefill}>It's demo time!</div>
+            <div className={cx(s.prefillButton, { [s.disabled]: isSubmitting })} onClick={prefill}>It's demo time!</div>
           </div>
         </Card>
       </WidthContainer>

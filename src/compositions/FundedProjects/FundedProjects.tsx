@@ -23,7 +23,7 @@ const projects = [
     token: 'DOSE',
     participants: 100_000,
     raised: 100_000,
-    price: 1.7,
+    price: 0.0000173,
     endedAt: 1634287201000,
   },
   {
@@ -32,7 +32,7 @@ const projects = [
     token: 'LFW',
     participants: 250_000,
     raised: 250_000,
-    price: 0.6,
+    price: 0.0000087,
     endedAt: 1634287201000,
   },
 ]

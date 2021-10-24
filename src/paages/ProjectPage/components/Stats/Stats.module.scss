@@ -4,6 +4,10 @@
 .stats {
   color: #000;
 
+  @include mobile {
+    margin-top: 20rem;
+  }
+
   @include except-mobile {
     width: 100%;
     display: grid;
@@ -13,8 +17,20 @@
 }
 
 .stat {
-  padding: 22rem 28rem 16rem;
-  border-left: 1px solid #000;
+
+  @include mobile {
+    padding: 16rem 16rem 12rem;
+    border-top: 1px solid #000;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  @include except-mobile {
+    padding: 22rem 28rem 16rem;
+    border-left: 1px solid #000;
+  }
 
   span {
     display: block;

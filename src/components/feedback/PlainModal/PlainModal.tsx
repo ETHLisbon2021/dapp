@@ -34,7 +34,7 @@ const PlainModal: React.FunctionComponent<PlainModalProps> = (props) => {
   const modalClassName = cx(s.plainModal, className)
 
   return createPortal(
-    <Overlay onClick={handleOverlayClick}>
+    <Overlay className={s.overlay} onClick={handleOverlayClick}>
       <div className={s.container}>
         <div
           className={modalClassName}
@@ -46,7 +46,7 @@ const PlainModal: React.FunctionComponent<PlainModalProps> = (props) => {
                 className={s.closeButton}
                 onClick={handleCloseButtonClick}
               >
-                <img className={s.icon} src="/images/svg/12/dismiss.svg" />
+                <img className={s.icon} src="/images/dismiss.svg" />
               </div>
             )
           }

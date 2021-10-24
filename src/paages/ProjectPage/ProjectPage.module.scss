@@ -24,13 +24,23 @@
 }
 
 .logo {
-  bottom: -42rem;
-  left: 40rem;
   z-index: 2;
-  width: 84rem;
-  height: 84rem;
   background-color: #fff;
   border: 1px solid #000;
+
+  @include mobile {
+    bottom: -22rem;
+    left: 16rem;
+    width: 44rem;
+    height: 44rem;
+  }
+
+  @include except-mobile {
+    bottom: -42rem;
+    left: 40rem;
+    width: 84rem;
+    height: 84rem;
+  }
 }
 
 .row {
@@ -43,21 +53,47 @@
 }
 
 .content {
-  max-width: 740rem;
-  padding: 80rem 40rem 40rem;
+
+  @include mobile {
+    margin-top: 40rem;
+  }
+
+  @include except-mobile {
+    max-width: 740rem;
+    padding: 80rem 40rem 40rem;
+  }
 }
 
 .name {
+  font-weight: 700;
+
+  @include mobile {
+    font-size: 20rem;
+    line-height: 28rem;
+  }
 
   @include except-mobile {
-    font-weight: 700;
     font-size: 28rem;
     line-height: 56rem;
   }
 }
 
+.stageAndAbout {
+
+  @include mobile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
+
 .about {
   color: #222;
+
+  @include mobile {
+    margin-top: 32rem;
+    font-size: 14rem;
+    line-height: 20rem;
+  }
 
   @include except-mobile {
     margin-top: 32rem;

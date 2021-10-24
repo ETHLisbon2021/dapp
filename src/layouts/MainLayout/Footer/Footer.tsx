@@ -10,7 +10,10 @@ const Footer = () => {
   return (
     <footer className={s.footer}>
       <WidthContainer>
-        Footer
+        <div className={s.content}>
+          <div className={s.logo}>Eligible</div>
+          <div className={s.withLove}>Made with ❤️ on ETHLisbon 2021</div>
+        </div>
       </WidthContainer>
     </footer>
   )

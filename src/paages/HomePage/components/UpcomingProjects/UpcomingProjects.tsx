@@ -11,8 +11,8 @@ const ProjectCard = ({ data }) => {
   const { cover, logo, name, tokenAddress, tokenSymbol, poolSize, hardCap, tokenPrice } = data
 
   const handleParticipate = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
+    // event.preventDefault()
+    // event.stopPropagation()
   }
 
   return (

@@ -3,6 +3,7 @@ let sharableStore = {}
 const setProjects = (projects: any[]) => {
   sharableStore = projects.reduce((acc, project) => {
     acc[project.tokenAddress] = project
+    return acc
   }, {})
 }
 

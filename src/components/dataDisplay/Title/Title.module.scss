@@ -1,0 +1,42 @@
+@import "src/scss/index";
+
+
+.title {
+  position: relative;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  div {
+
+    &:first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      color: #fff;
+      text-shadow: #000 0 0 1px;
+
+      @include mobile {
+        transform: translate3d(-3px, -3px, 0);
+      }
+
+      @include except-mobile {
+        transform: translate3d(-4px, -4px, 0);
+      }
+
+      span {
+        color: #000;
+        -webkit-text-fill-color: #000;
+      }
+    }
+
+    &:last-child {
+      color: #000;
+
+      span {
+        color: #fff;
+        text-shadow: #000 0 0 1px;
+      }
+    }
+  }
+}

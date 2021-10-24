@@ -1,4 +1,50 @@
+@import "src/scss/index";
+
+
 .footer {
   background-color: #000;
-  padding: 40rem;
+}
+
+.content {
+  position: relative;
+  padding: 28rem 0;
+}
+
+.logo {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  @include mobile {
+    display: none;
+  }
+
+  @include except-mobile {
+    font-size: 18rem;
+    line-height: 28rem;
+  }
+}
+
+.withLove {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include mobile {
+    top: 20rem;
+    font-size: 14rem;
+    line-height: 20rem;
+  }
+
+  @include except-mobile {
+    top: 28rem;
+    font-size: 16rem;
+    line-height: 28rem;
+  }
 }

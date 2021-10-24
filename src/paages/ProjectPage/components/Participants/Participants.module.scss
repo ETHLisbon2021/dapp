@@ -1,0 +1,145 @@
+@import "src/scss/index";
+
+
+.root {
+
+  @include mobile {
+    overflow: hidden;
+    margin-top: 16rem;
+  }
+
+  @include except-mobile {
+    margin-top: 20rem;
+  }
+}
+
+.content {
+
+  @include except-mobile {
+    padding-left: 40rem;
+  }
+}
+
+.title {
+  margin-bottom: 4rem;
+  font-weight: 700;
+  font-size: 18rem;
+  line-height: 36rem;
+  text-transform: uppercase;
+}
+
+.tableContainer1 {
+
+  @include mobile {
+    margin: 0 -16rem;
+    overflow: hidden;
+  }
+}
+
+.tableContainer2 {
+
+  @include mobile {
+    margin-bottom: -16rem;
+    padding-bottom: 16rem;
+    overflow-x: auto;
+  }
+}
+
+.tableContainer3 {
+
+  @include mobile {
+    padding: 0 16rem;
+  }
+}
+
+.table {
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
+  border-collapse: collapse;
+
+  thead {
+    position: relative;
+    z-index: 2;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-shadow: #000 4px 4px;
+  }
+
+  th {
+    padding: 16rem;
+    color: #222;
+    font-size: 14rem;
+    line-height: 20rem;
+    text-transform: uppercase;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  tbody {
+
+    tr {
+
+      &:first-child {
+
+        td {
+
+          @include except-mobile {
+            padding-top: 20rem;
+          }
+        }
+      }
+
+      &:nth-child(even) {
+
+        td {
+          background-color: #fff;
+        }
+      }
+    }
+  }
+
+  td {
+    padding: 16rem;
+    font-size: 15rem;
+    line-height: 20rem;
+    text-transform: uppercase;
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+}
+
+.main {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  width: 32rem;
+  height: 32rem;
+  margin-right: 12rem;
+  background-color: #fff;
+}
+
+.name {
+
+  @include except-mobile {
+    font-weight: 700;
+    font-size: 14rem;
+    line-height: 20rem;
+  }
+}
+
+.token {
+
+  @include except-mobile {
+    color: #666;
+    font-size: 12rem;
+    line-height: 16rem;
+  }
+}

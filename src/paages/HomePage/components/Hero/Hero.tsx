@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { WidthContainer } from 'components/layout'
+import { Title } from 'components/dataDisplay'
 
 import RatingCard from './components/RatingCard/RatingCard'
 
@@ -13,10 +14,9 @@ const Hero = () => {
     <div className={s.hero}>
       <WidthContainer>
         <div className={s.content}>
-          <div className={s.title}>
-            <div><span>Eligible</span> is a new word in the sale and purchase of tokens</div>
-            <div><span>Eligible</span> is a new word in the sale and purchase of tokens</div>
-          </div>
+          <Title className={s.title}>
+            <span>Eligible</span> is a new word in the sale and purchase of tokens
+          </Title>
           <RatingCard />
         </div>
       </WidthContainer>

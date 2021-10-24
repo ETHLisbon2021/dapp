@@ -1,11 +1,25 @@
+@import "src/scss/index";
+
+
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+
+  @include mobile {
+    overflow: hidden;
+  }
 }
 
 .content {
   position: relative;
   flex: 1 1 auto;
-  padding: 40rem 0 60rem;
+
+  @include mobile {
+    padding: 32rem 0 72rem;
+  }
+
+  @include except-mobile {
+    padding: 56rem 0 120rem;
+  }
 }

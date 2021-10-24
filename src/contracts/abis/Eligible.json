@@ -76,6 +76,11 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
@@ -86,14 +91,9 @@
         "type": "address"
       },
       {
-        "internalType": "address",
-        "name": "tokenAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "bytes",
+        "internalType": "bytes32[]",
         "name": "proof",
-        "type": "bytes"
+        "type": "bytes32[]"
       }
     ],
     "name": "claim",
@@ -127,14 +127,14 @@
         "type": "address"
       },
       {
-        "internalType": "bytes32",
-        "name": "root",
-        "type": "bytes32"
+        "internalType": "address[]",
+        "name": "receivers",
+        "type": "address[]"
       },
       {
-        "internalType": "bytes32",
-        "name": "tree",
-        "type": "bytes32"
+        "internalType": "uint256[]",
+        "name": "amounts",
+        "type": "uint256[]"
       }
     ],
     "name": "distribute",
@@ -176,6 +176,29 @@
       }
     ],
     "name": "initSale",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "root",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "tree",
+        "type": "bytes32"
+      }
+    ],
+    "name": "mekrleDistribute",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -252,9 +275,9 @@
         "type": "bytes32"
       },
       {
-        "internalType": "bytes",
+        "internalType": "bytes32[]",
         "name": "proof",
-        "type": "bytes"
+        "type": "bytes32[]"
       }
     ],
     "name": "verifyProof",

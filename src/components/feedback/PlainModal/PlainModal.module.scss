@@ -37,18 +37,19 @@
   top: 0;
   right: 0;
   z-index: 10;
-  padding: 8rem;
-  background-color: #000;
+  width: 32rem;
+  height: 32rem;
+  background-color: #333;
   cursor: pointer;
+  @include basic-transition();
 
   img {
     display: block;
-    width: 16rem;
-    height: 16rem;
+    width: 100%;
   }
 
   &:hover {
-    opacity: 1;
+    background-color: #000;
   }
 }
 
@@ -89,6 +90,6 @@
   }
 
   .plainModal {
-    width: 504rem;
+    width: 440rem;
   }
 }

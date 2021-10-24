@@ -2,7 +2,14 @@
 
 
 .stage {
-  margin-top: 32rem;
+
+  @include mobile {
+    margin-top: 20rem;
+  }
+
+  @include except-mobile {
+    margin-top: 40rem;
+  }
 }
 
 .title {
