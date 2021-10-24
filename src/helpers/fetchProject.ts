@@ -8,10 +8,12 @@ const fetchProject = async (tokenAddress: string) => {
   try {
     const eligibleContract = getContract('eligible')
 
-    const { totalCap, distribution, endingAt, ipfsHash: ipfsHashHex, maxDeposit, totalDeposits, root, state } = await eligibleContract.sales(tokenAddress)
+    let { totalCap, distribution, endingAt, ipfsHash: ipfsHashHex, maxDeposit, totalDeposits, initiator, state, root } = await eligibleContract.sales(tokenAddress)
 
     const ipfsHashArr = utils.arrayify(ipfsHashHex)
     const ipfsHash = utils.base58.encode([ 18, 32, ...ipfsHashArr ])
+
+    console.log('IPFS hash:', ipfsHash)
 
     const ipfsData = await fetchIpfs(ipfsHash)
 
@@ -19,20 +21,35 @@ const fetchProject = async (tokenAddress: string) => {
 
     const { name, about, cover, logo, tokenSymbol } = ipfsData
 
-    const tokenPrice = distribution.div(totalCap)
+    const poolSize = formatETH(formatUnits(totalCap, 18))
+    const hardCap = formatETH(formatUnits(distribution, 18))
+    const allocation = formatETH(formatUnits(maxDeposit, 18))
+    const tokenPrice = parseFloat((hardCap / poolSize).toFixed(7))
 
-    return {
+    endingAt = parseInt(endingAt.toString()) * 1000 as any
+    totalDeposits = parseInt(totalDeposits.toString()) as any
+    state = parseInt(state.toString())
+
+    const project = {
+      owner: initiator,
       name,
       about,
       cover,
       logo,
       tokenAddress,
       tokenSymbol,
-      poolSize: formatETH(formatUnits(totalCap, 18)),
-      hardCap: formatETH(formatUnits(distribution, 18)),
-      tokenPrice: formatETH(formatUnits(tokenPrice, 18)),
-      endingAt: parseInt(endingAt.toString()) * 1000,
+      poolSize,
+      hardCap,
+      tokenPrice,
+      allocation,
+      endingAt,
+      totalDeposits,
+      state,
     }
+
+    console.log('project:', project)
+
+    return project
   }
   catch (err) {
     console.error(err)

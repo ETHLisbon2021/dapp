@@ -59,7 +59,7 @@
   }
 
   @include except-mobile {
-    max-width: 740rem;
+    max-width: 800rem;
     padding: 80rem 40rem 40rem;
   }
 }
@@ -99,5 +99,38 @@
     margin-top: 32rem;
     font-size: 16rem;
     line-height: 28rem;
+  }
+}
+
+.stopWhitelistButton,
+.distributeButton {
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #a10d0d;
+  cursor: pointer;
+  @include basic-transition();
+
+  @include except-mobile {
+    height: 44rem;
+    margin-top: 20rem;
+    font-size: 12rem;
+    line-height: 44rem;
+  }
+
+  &:hover {
+    background-color: #b91313;
+  }
+
+  .spinner {
+    width: 14rem;
+  }
+}
+
+.distributeButton {
+
+  @include except-mobile {
+    margin-left: 40rem;
   }
 }

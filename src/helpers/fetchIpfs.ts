@@ -16,8 +16,8 @@ axiosRetry(api, { retries: 3 })
 
 export const getIpfsData = async (ipfsHash): Promise<any> => {
   try {
-    // const { data } = await api.get(`https://gateway.pinata.cloud/ipfs/${ipfsHash}`)
-    const { data } = await api.get(`https://ipfs.io/ipfs/${ipfsHash}`)
+    const { data } = await api.get(`https://gateway.pinata.cloud/ipfs/${ipfsHash}`)
+    // const { data } = await api.get(`https://ipfs.io/ipfs/${ipfsHash}`)
 
     return data
   }

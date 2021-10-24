@@ -34,7 +34,7 @@ const usePresets = ({ tokenAddress }) => {
   }, [])
 
   const select = async (index) => {
-    if (!library || !account) {
+    if (!library || !account || index === state.selectedIndex) {
       return
     }
 

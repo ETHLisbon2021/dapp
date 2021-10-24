@@ -4,7 +4,7 @@ import { utils } from 'ethers'
 import { useForm } from 'formular'
 import { getContract } from 'contracts'
 import { useReducerState } from 'hooks'
-import { formatUnits } from '@ethersproject/units'
+import { formatUnits, parseUnits } from '@ethersproject/units'
 import { required } from 'helpers/validators'
 import { formatETH } from 'helpers'
 
@@ -14,7 +14,7 @@ type FormFields = {
   amount: number
 }
 
-const useApply = ({ tokenAddress }) => {
+const useApply = ({ tokenAddress, allocation }) => {
   const { library, account } = useConnect()
 
   const storageKey = `eligible-applied-for-${tokenAddress}`
@@ -61,15 +61,17 @@ const useApply = ({ tokenAddress }) => {
 
     const eligibleContract = getContract('eligible', true)
     const account = form.fields.account.state.value
+    const amount = form.fields.amount.state.value
 
-    if (!utils.isAddress(account)) {
+    if (!utils.isAddress(account) || !amount || amount > allocation) {
       return
     }
 
     try {
       setState({ isSubmitting: true })
 
-      const receipt = await eligibleContract.deposit(tokenAddress, account)
+      const value = parseUnits(String(amount), 18)
+      const receipt = await eligibleContract.deposit(tokenAddress, account, { value })
       const trx = await receipt.wait()
 
       window.localStorage.setItem(storageKey, 'true')

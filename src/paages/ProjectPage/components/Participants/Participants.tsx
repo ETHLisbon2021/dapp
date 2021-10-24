@@ -7,9 +7,9 @@ import s from './Participants.module.scss'
 
 const titles = [
   'Address',
-  'Amount',
-  'Score',
+  'Deposit',
   'Allocation',
+  'Score',
 ]
 
 const Participants = ({ data, tokenSymbol }) => {
@@ -38,12 +38,12 @@ const Participants = ({ data, tokenSymbol }) => {
                 </thead>
                 <tbody>
                 {
-                  data.map(({ address, amount, score, allocation }) => (
-                    <tr key={address}>
+                  data.map(({ address, amount, score, allocation }, index) => (
+                    <tr key={`${address}-${index}`}>
                       <td>{address}</td>
-                      <td>{amount} {tokenSymbol}</td>
-                      <td>{score ? `${score} ${tokenSymbol}` : '-'}</td>
-                      <td>{allocation ? `${allocation} ${tokenSymbol}` : '-'}</td>
+                      <td>{amount} ETH</td>
+                      <td>{allocation ? `${allocation} ETH` : '-'}</td>
+                      <td>{score ? score : '-'}</td>
                     </tr>
                   ))
                 }

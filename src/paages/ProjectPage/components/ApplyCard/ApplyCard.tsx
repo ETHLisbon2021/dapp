@@ -1,4 +1,5 @@
 import React from 'react'
+import { useFieldState } from 'formular'
 import cx from 'classnames'
 
 import { Card } from 'components/layout'
@@ -9,17 +10,19 @@ import s from './ApplyCard.module.scss'
 
 
 const Input = ({ field, ...rest }) => {
+  const { value } = useFieldState(field)
+
   const handleChange = (event) => {
     field.set(event.target.value)
   }
 
   return (
-    <input {...rest} type="text" onChange={handleChange} />
+    <input {...rest} value={String(value)} type="text" onChange={handleChange} />
   )
 }
 
-const ApplyCard = ({ tokenAddress }) => {
-  const { isFetching, form, balance, submit, isSubmitting, isApplied } = useApply({ tokenAddress })
+const ApplyCard = ({ tokenAddress, allocation }) => {
+  const { isFetching, form, balance, submit, isSubmitting, isApplied } = useApply({ tokenAddress, allocation })
 
   if (isApplied) {
     return (
@@ -29,6 +32,19 @@ const ApplyCard = ({ tokenAddress }) => {
         </div>
       </Card>
     )
+  }
+
+  const handleMaxClick = () => {
+    let amount
+
+    if (balance < allocation) {
+      amount = balance
+    }
+    else {
+      amount = allocation
+    }
+
+    form.fields.amount.set(amount)
   }
 
   return (
@@ -46,7 +62,7 @@ const ApplyCard = ({ tokenAddress }) => {
             field={form.fields.amount}
             placeholder="AMOUNT"
           />
-          <div className={s.maxButton}>Max</div>
+          <div className={s.maxButton} onClick={handleMaxClick}>Max</div>
         </div>
         <div className={s.balance}>
           <span>You balance:</span>&nbsp;

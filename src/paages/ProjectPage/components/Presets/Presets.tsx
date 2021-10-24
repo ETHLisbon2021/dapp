@@ -32,7 +32,7 @@ const Preset = ({ data, loading, active, onSelect }) => {
   )
 }
 
-const Presets = ({ tokenAddress }) => {
+const Presets = ({ tokenAddress, presetState }) => {
   const { isFetching, presets, selectingIndex, selectedIndex, select } = usePresets({ tokenAddress })
 
   return (
@@ -45,15 +45,19 @@ const Presets = ({ tokenAddress }) => {
           ) : (
             <div className={s.presets}>
               {
-                presets.map((data, index) => (
-                  <Preset
-                    key={data.id || index}
-                    data={data}
-                    loading={index === selectingIndex}
-                    active={index === selectedIndex}
-                    onSelect={() => select(index)}
-                  />
-                ))
+                presets.map((data, index) => {
+                  const active = index === selectedIndex || (selectedIndex === null && presetState.presetId === data.id)
+
+                  return (
+                    <Preset
+                      key={data.id || index}
+                      data={data}
+                      loading={index === selectingIndex}
+                      active={active}
+                      onSelect={active ? null : () => select(index)}
+                    />
+                  )
+                })
               }
             </div>
           )

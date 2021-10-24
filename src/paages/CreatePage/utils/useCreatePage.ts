@@ -55,9 +55,9 @@ const useCreatePage = () => {
       tokenSymbol: 'AZURO',
       name: 'Azuro',
       about: 'Azuro is the decentralized infrastructure needed to increase transparency, efficiency, responsibility and fairness, and share more value with more participants in betting, globally.',
-      poolSize: 400_000,
-      hardCap: 600_000 / 3900,
-      allocation: 1000,
+      poolSize: 750_000, // in Tokens
+      hardCap: 65, // in ETH
+      allocation: 0.3, // in ETH
       endingAt: 1635328944659,
     })
   }

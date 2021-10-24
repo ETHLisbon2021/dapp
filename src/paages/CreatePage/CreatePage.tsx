@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { utils } from 'ethers'
 import { useConnect } from 'web3'
 import { useFieldState } from 'formular'
-import { parseUnits } from '@ethersproject/units'
+import { formatUnits, parseUnits } from '@ethersproject/units'
 // import { Web3Storage } from 'web3.storage'
 import DatePicker from 'react-date-picker/dist/entry.nostyle'
 import { contracts, getTokenContract } from 'contracts'
@@ -71,6 +71,10 @@ const FileInput = ({ id, field, placeholder, mockedSrc }) => {
 const TokenSymbol = ({ field, isLoading }) => {
   const { value } = useFieldState(field)
 
+  if (!isLoading && !value) {
+    return null
+  }
+
   return (
     <div className={s.tokenSymbol}>
       {
@@ -88,10 +92,10 @@ const AddressInputs = ({ form }) => {
   const [ isLoading, setLoading ] = useState(false)
 
   const handleChange = async (tokenAddress) => {
-    if (!utils.isAddress(tokenAddress)) {
-      form.fields.tokenAddress.setError('Not valid address')
-      return
-    }
+    // if (!utils.isAddress(tokenAddress)) {
+    //   form.fields.tokenAddress.setError('Not valid address')
+    //   return
+    // }
 
     setLoading(true)
 
@@ -100,7 +104,10 @@ const AddressInputs = ({ form }) => {
 
       const symbol = await tokenContract.symbol()
 
+      console.log('symbol:', symbol)
+
       form.fields.tokenSymbol.set(symbol)
+      setLoading(false)
     }
     catch (err) {
       console.error(err)
@@ -155,14 +162,16 @@ const SubmitButton = ({ form, isSubmitting, onSubmit }) => {
         setState({ isLoading: true })
 
         const tokenContract = getTokenContract(tokenAddress)
-        const allowance = await tokenContract.allowance(account, contracts.eligible.address)
+        const allowanceBN = await tokenContract.allowance(account, contracts.eligible.address)
+        const allowance = parseFloat(formatUnits(allowanceBN, 18))
+        const requiredAmount = parseFloat(form.fields.hardCap.state.value)
 
-        console.log('Allowance amount:', allowance.toString())
-        console.log('Required amount:', String(form.fields.hardCap.state.value))
+        console.log('Allowance amount:', allowance)
+        console.log('Required amount:', requiredAmount)
 
         setState({
           isLoading: false,
-          isAllowed: allowance.toString() === String(form.fields.hardCap.state.value),
+          isAllowed: allowance >= requiredAmount,
         })
       }
       catch (err) {
@@ -198,7 +207,7 @@ const SubmitButton = ({ form, isSubmitting, onSubmit }) => {
       console.log('Approve amount:', amount.toString())
 
       const receipt = await tokenContract.approve(contracts.eligible.address, amount)
-      const trx = receipt.wait()
+      const trx = await receipt.wait()
 
       setState({
         isLoading: false,

@@ -63,6 +63,23 @@
   display: flex;
 }
 
+.tokenSymbol {
+  height: 44rem;
+  padding: 0 16rem;
+  line-height: 42rem;
+  background-color: #eee;
+  border: 1px solid #000;
+  border-left: 0;
+  font-size: 12rem;
+  font-weight: 700;
+
+  .spinner {
+    display: block;
+    width: 12rem;
+    margin-top: 14rem;
+  }
+}
+
 .fileInput {
   display: grid;
   grid-template-columns: auto 124rem;
