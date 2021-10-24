@@ -4,6 +4,9 @@ import s from './Stage.module.scss'
 
 
 const Stage = ({ state }) => {
+  if (state === undefined) {
+    return null
+  }
 
   const { title, text } = ([
     {
@@ -22,7 +25,7 @@ const Stage = ({ state }) => {
       title: 'Closed',
       text: 'This project is finished. Tokens were distributed.',
     },
-  ])[state]
+  ])[Number(state)]
 
   return (
     <div className={s.stage}>

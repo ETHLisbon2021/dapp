@@ -52,9 +52,10 @@ const useCreatePage = () => {
       cover: '/ipfs-files/cover.jpg',
       logo: '/ipfs-files/logo.jpg',
       tokenAddress: process.env.NEXT_PUBLIC_TOKEN,
-      tokenSymbol: 'AZURO',
-      name: 'Azuro',
-      about: 'Azuro is the decentralized infrastructure needed to increase transparency, efficiency, responsibility and fairness, and share more value with more participants in betting, globally.',
+      tokenSymbol: 'ELI',
+      name: 'Eligible',
+      about: 'Defi ecosystem grows fast and appears a lot of projects and most of them distribute tokens in some way, and while projects strive to find the community that will suit them, that\'s not the case for major instances, mainly projects couldn\'t control whom they distribute their tokens and questioning themself: are they distributing tokens to the right hands? On the other hand, usually, there are a lot of applicants missing the sale that can be beneficial for the project.\n' +
+        'Usually, there is no proper selection, investors receive their allocations depending on how fast they are, or even randomly, or via whitelists based on some off-chain data, such as KYC, Social Networks activity, and other bullshit. We are thinking that your allocation should depend on your on-chain activity.',
       poolSize: 750_000, // in Tokens
       hardCap: 65, // in ETH
       allocation: 0.3, // in ETH

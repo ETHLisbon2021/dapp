@@ -40,8 +40,8 @@ const useProjectPage = (tokenAddress: string) => {
         },
         users: users.map(({ address, allocation, amount, score }) => ({
           address,
-          allocation: parseFloat(formatUnits(allocation, 18)),
-          amount: parseFloat(formatUnits(amount, 18)),
+          allocation: allocation ? parseFloat(formatUnits(allocation, 18)) : null,
+          amount: amount ? parseFloat(formatUnits(amount, 18)) : null,
           score,
         })),
       })
