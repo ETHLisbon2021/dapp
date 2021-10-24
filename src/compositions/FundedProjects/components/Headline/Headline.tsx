@@ -20,12 +20,12 @@ const stats = [
   },
 ]
 
-const Headline = () => {
+const Headline = ({ title }) => {
 
   return (
     <div className={s.headline}>
       <div>
-        <div className={s.rootTitle}>Funded projects</div>
+        <div className={s.rootTitle}>{title}</div>
         <div className={s.text}>We bring new technologies to our community</div>
       </div>
       <Card className={s.stats}>

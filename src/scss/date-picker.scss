@@ -34,12 +34,14 @@ input[type=number] {
   }
 
   input {
-    height: 48rem;
+    height: 42rem;
     border: 0;
     background: none !important;
     outline: none;
     color: #000 !important;
-    font-size: 16rem;
+    font-size: 14rem;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
     box-shadow: none;
     cursor: default;
     pointer-events: none;
@@ -95,7 +97,7 @@ input[type=number] {
   background: white;
   font: inherit;
   font-size: 18rem;
-  border: 0;
+  border: 1px solid #000;
   overflow: hidden;
   box-shadow: 0 30px 40px 0 rgb(16 36 94 / 20%);
 

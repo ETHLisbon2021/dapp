@@ -9,7 +9,8 @@ import { contracts, getTokenContract } from 'contracts'
 import { useReducerState } from 'hooks'
 import cx from 'classnames'
 
-import { WidthContainer } from 'components/layout'
+import { WidthContainer, Card } from 'components/layout'
+import FundedProjects from 'compositions/FundedProjects/FundedProjects'
 
 import Input from './components/Input/Input'
 
@@ -20,12 +21,10 @@ import s from './CreatePage.module.scss'
 
 // const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_KEY })
 
-const ImageInput = ({ className, field, mockedSrc }) => {
+const FileInput = ({ id, field, placeholder, mockedSrc }) => {
   const { value: src, error } = useFieldState<string>(field)
 
   const [ isLoading, setLoading ] = useState(false)
-
-  const id = `input-${className}`
 
   const handleChange = async (event) => {
     const files = event.target.files
@@ -48,23 +47,44 @@ const ImageInput = ({ className, field, mockedSrc }) => {
   }
 
   return (
-    <label className={className} htmlFor={id} style={{ backgroundImage: src ? `url(${src})` : null }}>
-      <input id={id} type="file" onChange={handleChange} />
+    <div className={s.fileInput}>
+      <div className={s.placeholder}>{src || placeholder}</div>
+      <label htmlFor={id}>
+        <input id={id} type="file" onChange={handleChange} />
+        {
+          isLoading ? (
+            <img className={s.spinner} src="/images/svg/16/spinner.svg" alt="" />
+          ) : (
+            Boolean(src) ? (
+              <span>Selected!</span>
+            ) : (
+              <span>Select file</span>
+            )
+          )
+        }
+      </label>
+    </div>
+  )
+}
+
+const TokenSymbol = ({ field, isLoading }) => {
+  const { value } = useFieldState(field)
+
+  return (
+    <div className={s.tokenSymbol}>
       {
-        isLoading && (
+        isLoading ? (
           <img className={s.spinner} src="/images/svg/16/spinner.svg" alt="" />
+        ) : (
+          <span>{value}</span>
         )
       }
-      {
-        !src && !isLoading && (
-          <img className={s.imgPlaceholder} src="/images/image-placeholder.svg" alt="" />
-        )
-      }
-    </label>
+    </div>
   )
 }
 
 const AddressInputs = ({ form }) => {
+  const [ isLoading, setLoading ] = useState(false)
 
   const handleChange = async (tokenAddress) => {
     if (!utils.isAddress(tokenAddress)) {
@@ -72,28 +92,30 @@ const AddressInputs = ({ form }) => {
       return
     }
 
-    const tokenContract = getTokenContract(tokenAddress)
+    setLoading(true)
 
-    const symbol = await tokenContract.symbol()
+    try {
+      const tokenContract = getTokenContract(tokenAddress)
 
-    form.fields.tokenSymbol.set(symbol)
+      const symbol = await tokenContract.symbol()
+
+      form.fields.tokenSymbol.set(symbol)
+    }
+    catch (err) {
+      console.error(err)
+      setLoading(false)
+    }
   }
 
   return (
-    <div className={s.row}>
-      <div>
-        <div className={s.label}>Token address</div>
-        <Input className={s.input} field={form.fields.tokenAddress} onChange={handleChange} />
-      </div>
-      <div>
-        <div className={s.label}>Token symbol</div>
-        <Input className={s.input} field={form.fields.tokenSymbol} disabled />
-      </div>
+    <div className={s.addressInputs}>
+      <Input className={s.input} field={form.fields.tokenAddress} placeholder="Token address" onChange={handleChange} />
+      <TokenSymbol field={form.fields.tokenSymbol} isLoading={isLoading} />
     </div>
   )
 }
 
-const EndingDate = ({ field }) => {
+const EndingDate = ({ field, placeholder }) => {
   const { value: startDate } = useFieldState<number>(field)
 
   const minDate = new Date(new Date().setDate(new Date().getDate() + 1))
@@ -103,12 +125,18 @@ const EndingDate = ({ field }) => {
   }
 
   return (
-    <DatePicker
-      className={s.datePicker}
-      value={startDate ? new Date(startDate) : null}
-      minDate={minDate}
-      onChange={handleChange}
-    />
+    <div className={s.datePicker}>
+      {
+        Boolean(!startDate) && (
+          <div className={s.placeholder}>{placeholder}</div>
+        )
+      }
+      <DatePicker
+        value={startDate ? new Date(startDate) : null}
+        minDate={minDate}
+        onChange={handleChange}
+      />
+    </div>
   )
 }
 
@@ -199,29 +227,29 @@ const CreatePage = () => {
   const { form, prefill, submit, isSubmitting } = useCreatePage()
 
   return (
-    <WidthContainer>
-      <div className={s.imageContainer}>
-        <ImageInput className={s.cover} field={form.fields.cover} mockedSrc="/ipfs-files/cover.jpg" />
-        <ImageInput className={s.logo} field={form.fields.logo} mockedSrc="/ipfs-files/logo.jpg" />
-      </div>
-      <AddressInputs form={form} />
-      <div className={s.label}>Name</div>
-      <Input className={s.input} field={form.fields.name} />
-      <div className={s.label}>Pool size</div>
-      <Input className={s.input} field={form.fields.poolSize} />
-      <div className={s.label}>Hard cap</div>
-      <Input className={s.input} field={form.fields.hardCap} />
-      <div className={s.label}>Allocation</div>
-      <Input className={s.input} field={form.fields.allocation} />
-      <div className={s.label}>Description</div>
-      <Input className={s.input} field={form.fields.about} />
-      <div className={s.label}>Ending at</div>
-      <EndingDate field={form.fields.endingAt} />
-      <div className={s.buttons}>
-        <div className={s.prefillButton} onClick={prefill}>It's demo time!</div>
-        <SubmitButton form={form} isSubmitting={isSubmitting} onSubmit={submit} />
-      </div>
-    </WidthContainer>
+    <>
+      <WidthContainer>
+        <Card className={s.card}>
+          <div className={s.formTitle}>Fill all fields to proceed to the next step</div>
+          <div className={s.form}>
+            <AddressInputs form={form} />
+            <Input className={s.input} field={form.fields.name} placeholder="Name" />
+            <Input className={s.input} field={form.fields.poolSize} placeholder="Pool size" />
+            <Input className={s.input} field={form.fields.hardCap} placeholder="Hard cap" />
+            <Input className={s.input} field={form.fields.allocation} placeholder="Allocation" />
+            <Input className={s.input} field={form.fields.about} placeholder="Description" />
+            <EndingDate field={form.fields.endingAt} placeholder="Ending at" />
+            <FileInput id="input-cover" field={form.fields.cover} placeholder="Cover image" mockedSrc="/ipfs-files/cover.jpg" />
+            <FileInput id="input-logo" field={form.fields.logo} placeholder="Project logo" mockedSrc="/ipfs-files/logo.jpg" />
+          </div>
+          <div className={s.buttons}>
+            <SubmitButton form={form} isSubmitting={isSubmitting} onSubmit={submit} />
+            <div className={s.prefillButton} onClick={prefill}>It's demo time!</div>
+          </div>
+        </Card>
+      </WidthContainer>
+      <FundedProjects title="Your projects" />
+    </>
   )
 }
 

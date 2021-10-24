@@ -42,14 +42,12 @@ const PlainModal: React.FunctionComponent<PlainModalProps> = (props) => {
         >
           {
             withCloseButton && (
-              <button
+              <div
                 className={s.closeButton}
-                type="button"
-                data-testid="closeButton"
                 onClick={handleCloseButtonClick}
               >
                 <img className={s.icon} src="/images/svg/12/dismiss.svg" />
-              </button>
+              </div>
             )
           }
           <div className={s.content}>

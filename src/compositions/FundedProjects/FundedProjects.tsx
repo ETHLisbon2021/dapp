@@ -37,11 +37,11 @@ const projects = [
   },
 ]
 
-const FundedProjects = () => {
+const FundedProjects = ({ title }) => {
 
   return (
     <WidthContainer className={s.root}>
-      <Headline />
+      <Headline title={title} />
       <div className={s.tableContainer1}>
         <div className={s.tableContainer2}>
           <div className={s.tableContainer3}>

@@ -41,10 +41,8 @@ let Button: React.FunctionComponent<ButtonProps> = (props) => {
       disabled={disabled}
       onClick={handleClick}
     >
-      <div className={s.buttonInner}>
-        <img className={s.buttonIcon} src={icon} alt="" />
-        <span className={s.buttonTitle}>{title}</span>
-      </div>
+      <span>{title}</span>
+      <div className={s.buttonBg} style={{ backgroundImage: `url(${icon})` }} />
     </button>
   )
 }
@@ -69,24 +67,20 @@ const ConnectModal: React.FunctionComponent<ConnectModalProps> = ({ closeModal }
       className={s.modal}
       closeModal={closeModal}
     >
-      <div className={s.content}>
-        <div className={s.title}>
-          Connect a wallet
-        </div>
-        <div className="w-full">
-          {
-            connectors.map(({ icon, title, connector }) => (
-              <Button
-                key={title}
-                icon={icon}
-                title={title}
-                connector={connector}
-                disabled={isConnecting}
-                onClick={handleButtonClick}
-              />
-            ))
-          }
-        </div>
+      <div className={s.title}>Connect wallet</div>
+      <div>
+        {
+          connectors.map(({ icon, title, connector }) => (
+            <Button
+              key={title}
+              icon={icon}
+              title={title}
+              connector={connector}
+              disabled={isConnecting}
+              onClick={handleButtonClick}
+            />
+          ))
+        }
       </div>
     </PlainModal>
   )

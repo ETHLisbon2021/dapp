@@ -1,9 +1,11 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import { parseUnits } from '@ethersproject/units'
 import { utils } from 'ethers'
 import { useForm } from 'formular'
 import { useReducerState } from 'hooks'
 import { required } from 'helpers/validators'
+import { sharableStore, formatETH } from 'helpers'
 import { getContract } from 'contracts'
 
 
@@ -21,6 +23,7 @@ type FormFields = {
 }
 
 const useCreatePage = () => {
+  const router = useRouter()
   const [ state, setState ] = useReducerState({ isSubmitting: false })
 
   const { isSubmitting } = state
@@ -113,7 +116,20 @@ const useCreatePage = () => {
 
       setState({ isSubmitting: false })
 
-      alert('Success!')
+      sharableStore.addProject({
+        name,
+        about,
+        cover,
+        logo,
+        tokenAddress,
+        tokenSymbol,
+        poolSize,
+        hardCap,
+        tokenPrice: formatETH(hardCap / poolSize),
+        endingAt,
+      })
+
+      router.push('/projects')
     }
     catch (err) {
       console.error(err)

@@ -24,11 +24,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background-color: #2A3039;
-
-  &.whiteBg {
-    background-color: #fff;
-  }
+  background-color: #fff;
 
   &,
   &:focus {
@@ -37,47 +33,18 @@
 }
 
 .closeButton {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20rem;
-  height: 20rem;
-  vertical-align: top;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-
-  &::before {
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    bottom: -50%;
-    left: -50%;
-    margin: auto;
-    content: '';
-  }
-}
-
-.icon {
-  flex: none;
-  width: 16rem;
-  height: 16rem;
-}
-
-.closeButton {
-  position: absolute !important;
-  top: 16rem;
-  right: 16rem;
+  position: absolute;
+  top: 0;
+  right: 0;
   z-index: 10;
-  color: #fff;
+  padding: 8rem;
+  background-color: #000;
   cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.23s ease;
 
-  &.black {
-    color: #000;
+  img {
+    display: block;
+    width: 16rem;
+    height: 16rem;
   }
 
   &:hover {
@@ -123,7 +90,5 @@
 
   .plainModal {
     width: 504rem;
-    padding: 40rem 32rem 56rem;
-    border-radius: 16rem;
   }
 }

@@ -1,24 +1,8 @@
 import { utils } from 'ethers'
 import { formatUnits } from '@ethersproject/units'
-import { fetchIpfs } from 'helpers'
+import { fetchIpfs, formatETH } from 'helpers'
 import { getContract } from 'contracts'
 
-
-const formatETH = (value, fix = 4) => {
-  value = Number(value)
-
-  if (!value) {
-    return value
-  }
-
-  const rValue = parseFloat(Number(value).toFixed(fix))
-
-  if (rValue) {
-    return rValue
-  }
-
-  return formatETH(value, fix + 1)
-}
 
 const fetchProject = async (tokenAddress: string) => {
   try {

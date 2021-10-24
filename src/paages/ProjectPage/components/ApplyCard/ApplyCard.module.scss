@@ -1,43 +1,6 @@
 @import "src/scss/index";
 
 
-.root {
-  position: relative;
-
-  @include mobile {
-    margin-top: 40rem;
-  }
-}
-
-.star1,
-.star2 {
-  position: absolute;
-
-  @include mobile {
-    display: none;
-  }
-}
-
-.star1 {
-
-  @include except-mobile {
-    right: -103rem;
-    bottom: -140rem;
-    width: 227rem;
-    height: 227rem;
-  }
-}
-
-.star2 {
-
-  @include except-mobile {
-    top: -102rem;
-    left: -108rem;
-    width: 197rem;
-    height: 355rem;
-  }
-}
-
 .card {
   position: relative;
   z-index: 10;
@@ -47,7 +10,8 @@
   }
 
   @include except-mobile {
-    width: 360rem;
+    width: 400rem;
+    margin-top: 152rem;
     box-shadow: #222 8px 8px;
   }
 }
@@ -59,7 +23,7 @@
   }
 
   @include except-mobile {
-    padding: 52rem 32rem 40rem;
+    padding: 40rem 32rem 40rem;
   }
 }
 
@@ -76,14 +40,20 @@
 
   @include except-mobile {
     margin-bottom: 40rem;
-    font-size: 24rem;
+    font-size: 18rem;
     line-height: 28rem;
   }
+}
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: auto 80rem;
 }
 
 .input {
   width: 100%;
   border: 1px solid #222;
+  border-right: 0;
 
   @include mobile {
     height: 44rem;
@@ -92,9 +62,9 @@
   }
 
   @include except-mobile {
-    height: 56rem;
+    height: 44rem;
     padding: 0 20rem;
-    font-size: 14rem;
+    font-size: 12rem;
   }
 
   &:focus {
@@ -103,10 +73,30 @@
   }
 }
 
-.disclaimer {
+.maxButton {
+  width: 100%;
+  height: 44rem;
+  color: #222;
+  font-weight: 700;
+  font-size: 12rem;
+  line-height: 44rem;
+  text-align: center;
+  text-transform: uppercase;
+  border: 1px solid #222;
+  background-color: #ececec;
+  cursor: pointer;
+  @include basic-transition();
+
+  &:hover {
+    background-color: #ddd;
+  }
+}
+
+.balance {
   margin-top: 16rem;
   font-size: 12rem;
   line-height: 18rem;
+  text-transform: uppercase;
 }
 
 .button {

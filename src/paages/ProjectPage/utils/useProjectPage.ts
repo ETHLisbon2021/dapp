@@ -12,6 +12,8 @@ const useProjectPage = (tokenAddress: string) => {
 
       if (!project) {
         project = await fetchProject(tokenAddress)
+
+        sharableStore.addProject(project)
       }
 
       setState({ isFetching: false, project })

@@ -6,6 +6,10 @@ const setProjects = (projects: any[]) => {
   }, {})
 }
 
+const addProject = (project) => {
+  sharableStore[project.tokenAddress] = project
+}
+
 const getProject = (tokenAddress) => {
   return sharableStore[tokenAddress]
 }
@@ -13,5 +17,6 @@ const getProject = (tokenAddress) => {
 
 export default {
   setProjects,
+  addProject,
   getProject,
 }
